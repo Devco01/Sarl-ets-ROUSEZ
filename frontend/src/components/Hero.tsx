@@ -3,6 +3,7 @@ import './Hero.css';
 
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [previousSlide, setPreviousSlide] = useState(0);
   
   const slides = [
     {
@@ -36,23 +37,27 @@ const Hero: React.FC = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
+      setPreviousSlide(currentSlide);
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 12000); // 12 secondes pour un défilement plus lent
+    }, 15000); // 15 secondes pour laisser le temps à la transition
 
     return () => {
       clearInterval(interval);
     };
-  }, [slides.length]);
+  }, [currentSlide, slides.length]);
 
   const goToSlide = (index: number) => {
+    setPreviousSlide(currentSlide);
     setCurrentSlide(index);
   };
 
   const nextSlide = () => {
+    setPreviousSlide(currentSlide);
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
 
   const prevSlide = () => {
+    setPreviousSlide(currentSlide);
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
@@ -72,12 +77,20 @@ const Hero: React.FC = () => {
   return (
     <section id="home" className="hero">
       <div className="hero-slider">
-        {slides.map((slide, index) => (
-          <div
-            key={index}
-            className={`slide ${index === currentSlide ? 'active' : ''}`}
-            style={{ backgroundImage: `url(${slide.image})` }}
-          >
+        {slides.map((slide, index) => {
+          let slideClass = 'slide';
+          if (index === currentSlide) {
+            slideClass += ' active';
+          } else if (index === previousSlide) {
+            slideClass += ' prev';
+          }
+          
+          return (
+            <div
+              key={index}
+              className={slideClass}
+              style={{ backgroundImage: `url(${slide.image})` }}
+            >
             <div className="slide-content">
               <div className="container">
                 <div className="hero-logo animate-on-scroll">
@@ -105,7 +118,8 @@ const Hero: React.FC = () => {
               </div>
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
       
       {/* Navigation Arrows (Hidden on mobile) */}
