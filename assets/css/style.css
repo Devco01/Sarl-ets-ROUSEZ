@@ -151,29 +151,29 @@ body {
 }
 
 .hero-logo {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     opacity: 0;
     transform: translateY(30px);
     animation: slideInUp 1s ease forwards;
     display: inline-block;
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 2.5rem;
     border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .hero-logo img {
-    height: 200px;
+    height: 220px;
     width: auto;
     max-width: 500px;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .hero-title {
-    font-size: 2.8rem;
+    font-size: 2.4rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
     line-height: 1.2;
 }
 
@@ -742,45 +742,64 @@ section {
 
 .contact-item {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1.2rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
 }
 
 .contact-icon {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     background: #2c3e50;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     flex-shrink: 0;
-    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+    box-shadow: 0 3px 12px rgba(44, 62, 80, 0.2);
     transition: all 0.3s ease;
-    border: 3px solid #e74c3c;
+    margin-top: 0.2rem;
+    border: 2px solid #e74c3c;
+}
+
+.contact-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
 .contact-item:hover .contact-icon {
     background: #34495e;
     border-color: #3498db;
     transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
 }
 
 .contact-item h4 {
     color: #2c3e50;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
     font-weight: 600;
+    font-size: 1.1rem;
 }
 
 .contact-item p {
     color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.horaires-details {
+    margin-top: 0.5rem;
 }
 
 .horaires-details p {
-    margin: 0.3rem 0;
+    margin: 0.4rem 0;
     font-size: 0.9rem;
     line-height: 1.4;
     color: #555;
@@ -789,27 +808,34 @@ section {
 .horaires-details strong {
     color: #2c3e50;
     font-weight: 600;
+    display: inline-block;
+    min-width: 80px;
 }
 
 .contact-form {
     background: white;
-    padding: 2.5rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    padding: 2rem 2rem 1rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 15px;
+    padding: 12px;
     border: 2px solid #e1e8ed;
-    border-radius: 10px;
-    font-size: 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
     transition: border-color 0.3s ease;
     background: #f8f9fa;
 }
@@ -824,7 +850,12 @@ section {
 
 .form-group textarea {
     resize: vertical;
-    min-height: 120px;
+    min-height: 100px;
+}
+
+.contact-form .btn {
+    margin: 0;
+    width: 100%;
 }
 
 /* ===== LEGAL PAGES ===== */
@@ -999,13 +1030,16 @@ section {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+    align-items: start;
+    text-align: center;
 }
 
 .footer-logo {
-    height: 60px;
+    height: 100px;
     width: auto;
-    max-width: 180px;
-    margin-bottom: 1rem;
+    max-width: 250px;
+    margin: 0 auto 1.5rem auto;
+    display: block;
 }
 
 .footer-section h4 {
@@ -1122,13 +1156,13 @@ section {
     }
 
     .hero-logo {
-        padding: 1rem 1.5rem;
-        border-radius: 15px;
+        padding: 1.5rem 2rem;
+        border-radius: 20px;
     }
 
     .hero-logo img {
-        height: 100px;
-        max-width: 250px;
+        height: 140px;
+        max-width: 320px;
     }
 
     .nav-logo .logo {
@@ -1137,8 +1171,8 @@ section {
     }
 
     .footer-logo {
-        height: 50px;
-        max-width: 140px;
+        height: 80px;
+        max-width: 200px;
     }
 
     .about-content,
@@ -1221,13 +1255,14 @@ section {
     }
 
     .hero-logo {
-        padding: 0.8rem 1rem;
+        padding: 1rem 1.5rem;
         margin-bottom: 1.5rem;
+        border-radius: 15px;
     }
 
     .hero-logo img {
-        height: 80px;
-        max-width: 200px;
+        height: 100px;
+        max-width: 240px;
     }
 
     .nav-logo .logo {
