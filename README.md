@@ -1,120 +1,187 @@
-# Site Vitrine - Ets ROUSEZ / SARL Jérémie Arrivé
+# 🏗️ SARL Jérémie Arrivé - Site Vitrine Moderne
 
-## Description
-Site vitrine moderne pour l'entreprise Ets ROUSEZ - SARL Jérémie Arrivé, spécialisée dans :
-- Chauffage
-- Climatisation  
-- Plomberie
-- Sanitaire
+Site vitrine moderne avec architecture Frontend/Backend séparée pour l'entreprise **SARL Jérémie Arrivé / Ets ROUSEZ** spécialisée dans la plomberie, le chauffage et la climatisation à La Tremblade.
 
-## Fonctionnalités
-- ✨ Design moderne et responsive
-- 🎭 Sliders dynamiques sur la page d'accueil
-- 📱 Navigation mobile optimisée
-- 🎨 Animations au scroll
-- 📬 Formulaire de contact
-- 🖼️ Galerie de réalisations
-- 🚀 Performance optimisée
+## 📁 Architecture du Projet
 
-## Structure du projet
 ```
-├── index.html              # Page principale
-├── assets/
-│   ├── css/
-│   │   ├── style.css       # Styles principaux
-│   │   └── animations.css  # Animations avancées
-│   ├── js/
-│   │   └── main.js         # JavaScript principal
-│   └── images/
-│       ├── logo.png        # Logo de l'entreprise
-│       ├── hero-bg-*.jpg   # Images de fond du slider
-│       ├── about-image.jpg # Image section à propos
-│       └── gallery-*.jpg   # Images de la galerie
-└── README.md
+SARL-Jeremie-arrive/
+├── 📱 frontend/          # Application React TypeScript
+│   ├── public/           # Fichiers statiques
+│   ├── src/
+│   │   ├── components/   # Composants réutilisables
+│   │   ├── pages/        # Pages de l'application
+│   │   ├── services/     # Appels API
+│   │   ├── assets/       # Images, styles
+│   │   └── types/        # Types TypeScript
+│   └── package.json
+│
+├── 🚀 backend/           # API Node.js Express
+│   ├── routes/           # Routes API
+│   │   ├── contact.js    # Gestion formulaires contact
+│   │   ├── gallery.js    # Gestion galerie photos
+│   │   └── admin.js      # Authentification admin
+│   ├── uploads/          # Images uploadées
+│   ├── server.js         # Serveur principal
+│   └── package.json
+│
+├── 📂 old-static-site/   # Ancien site HTML/CSS/JS (sauvegarde)
+├── 🔧 shared/            # Code partagé (utilitaires, types)
+└── 📋 package.json       # Scripts globaux
 ```
 
-## Technologies utilisées
-- HTML5 sémantique
-- CSS3 avec Flexbox et Grid
-- JavaScript vanilla (ES6+)
-- Font Awesome pour les icônes
-- Google Fonts (Inter)
+## 🚀 Technologies Utilisées
 
-## Installation et démarrage
-1. Cloner le repository
+### Frontend
+- **React 18** avec **TypeScript**
+- **CSS Modules / Styled Components**
+- **Axios** pour les appels API
+- **React Router** pour la navigation
+- **React Hook Form** pour les formulaires
+
+### Backend
+- **Node.js** + **Express.js**
+- **Nodemailer** pour l'envoi d'emails
+- **Multer** pour l'upload de fichiers
+- **JWT** pour l'authentification
+- **bcryptjs** pour le hachage des mots de passe
+- **Rate limiting** pour la sécurité
+
+## 🏃‍♂️ Démarrage Rapide
+
+### 1. Installation des dépendances
 ```bash
-git clone https://github.com/Devco01/Sarl-ets-ROUSEZ.git
-cd Sarl-ets-ROUSEZ
+# Installer toutes les dépendances (frontend + backend)
+npm run install
 ```
 
-2. Ouvrir index.html dans un navigateur ou utiliser un serveur local
+### 2. Configuration
 ```bash
-# Avec Python
-python -m http.server 8000
-
-# Avec Node.js (http-server)
-npx http-server
-
-# Avec Live Server (VSCode extension)
+# Copier et configurer les variables d'environnement
+cd backend
+copy .env.example .env
+# Éditer .env avec vos vraies valeurs
 ```
 
-3. Le site sera accessible sur http://localhost:8000
+### 3. Développement
+```bash
+# Lancer frontend + backend simultanément
+npm run dev
 
-## Images à ajouter
-Pour finaliser le site, ajoutez les images suivantes dans le dossier `assets/images/` :
+# Ou séparément :
+npm run dev:frontend  # React sur http://localhost:3000
+npm run dev:backend   # API sur http://localhost:5000
+```
 
-### Obligatoires :
-- `logo.png` - Logo de l'entreprise (déjà fourni)
+### 4. Production
+```bash
+# Build du frontend
+npm run build
 
-### Recommandées :
-- `hero-bg-1.jpg` - Image de fond slider 1 (chauffage/climatisation)
-- `hero-bg-2.jpg` - Image de fond slider 2 (plomberie/sanitaire)  
-- `hero-bg-3.jpg` - Image de fond slider 3 (équipe/expertise)
-- `about-image.jpg` - Image section à propos
-- `gallery-1.jpg` - Réalisation chauffage
-- `gallery-2.jpg` - Réalisation climatisation
-- `gallery-3.jpg` - Réalisation sanitaire
-- `gallery-4.jpg` - Réalisation plomberie
+# Démarrer le backend en production
+npm run start:backend
+```
 
-## Personnalisation
-### Couleurs
-Les couleurs principales sont définies dans `style.css` :
-- Rouge : #e74c3c (couleur brand)
-- Bleu : #3498db (couleur secondaire)
-- Texte : #2c3e50
+## 📡 API Endpoints
 
-### Contenu
-- Modifier les textes dans `index.html`
-- Mettre à jour les informations de contact
-- Ajouter/modifier les services dans la section correspondante
+### 🔧 Contact
+- `POST /api/contact` - Envoyer un message de contact
+- `GET /api/contact/test` - Tester la config email
 
-## Fonctionnalités avancées
-- **Slider automatique** : Change toutes les 5 secondes
-- **Navigation tactile** : Support swipe sur mobile
-- **Animations au scroll** : Intersection Observer API
-- **Formulaire de contact** : Validation et feedback utilisateur
-- **Lightbox** : Galerie d'images en popup
-- **Performance** : Images préchargées, animations optimisées
+### 🖼️ Galerie
+- `GET /api/gallery` - Récupérer les images
+- `GET /api/gallery/:id` - Image spécifique
+- `POST /api/gallery` - Ajouter une image (upload)
+- `DELETE /api/gallery/:id` - Supprimer une image
+- `GET /api/gallery/meta/categories` - Catégories disponibles
 
-## SEO et Accessibilité
-- Meta tags optimisés
-- Structure HTML sémantique
-- Alt text sur toutes les images
-- Navigation clavier
-- Contraste respecté (WCAG)
+### 👤 Administration
+- `POST /api/admin/login` - Connexion admin
+- `GET /api/admin/profile` - Profil utilisateur
+- `GET /api/admin/stats` - Statistiques dashboard
+- `POST /api/admin/change-password` - Changer mot de passe
 
-## Responsive Design
-- Mobile First approach
-- Breakpoints : 480px, 768px, 1200px
-- Menu hamburger sur mobile
-- Images adaptatives
+## 🔐 Authentification Admin
 
-## Prochaines étapes (Backend)
-1. Serveur Node.js/Express
-2. Base de données (MongoDB/PostgreSQL)
-3. API REST pour le formulaire de contact
-4. Panel d'administration
-5. CMS pour gérer le contenu
+**Identifiants par défaut :**
+- Username: `admin`
+- Password: `admin123`
 
-## Contact
-Pour toute question concernant ce projet, contactez l'équipe de développement.
+⚠️ **Important :** Changez ces identifiants en production !
+
+## 📧 Configuration Email
+
+Configurez dans `backend/.env` :
+```env
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=etsrousez@gmail.com
+EMAIL_PASS=your_app_password_here
+```
+
+## 🌐 Fonctionnalités
+
+### ✅ Déjà Implémentées
+- 📱 Site responsive (mobile-first)
+- 📧 Formulaire de contact avec envoi email
+- 🖼️ Galerie photos dynamique
+- 🔐 Interface d'administration
+- 📤 Upload d'images
+- ⚡ Rate limiting pour la sécurité
+- 🚀 Architecture moderne et scalable
+
+### 🔄 À Venir
+- 💾 Base de données (SQLite/PostgreSQL)
+- 📊 Dashboard admin complet
+- 🎨 CMS pour le contenu
+- 📈 Analytics et statistiques
+- 🔄 Système de cache
+- 📱 App mobile (React Native)
+
+## 👨‍💻 Développement
+
+### Structure des Composants React
+```
+src/
+├── components/
+│   ├── Header/
+│   ├── Hero/
+│   ├── Services/
+│   ├── Gallery/
+│   ├── Contact/
+│   └── Footer/
+├── pages/
+│   ├── Home.tsx
+│   ├── About.tsx
+│   └── Admin/
+└── services/
+    └── api.ts
+```
+
+### Commandes Utiles
+```bash
+# Tests
+npm test
+
+# Linting
+npm run lint
+
+# Format code
+npm run format
+
+# Analyze bundle
+npm run analyze
+```
+
+## 📞 Contact
+
+**SARL Jérémie Arrivé / Ets ROUSEZ**
+- 📍 4 Zac des bregaudieres, 17390 La Tremblade
+- 📞 05 46 36 82 83
+- ✉️ etsrousez@gmail.com
+- 🌐 SIRET: 75387618400015
+- 🏢 NAF: 4322A
+
+---
+
+*Développé avec ❤️ pour une entreprise locale de qualité*
