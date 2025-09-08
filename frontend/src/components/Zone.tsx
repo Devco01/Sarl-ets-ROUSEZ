@@ -42,6 +42,12 @@ const Zone: React.FC = () => {
                 <p>Rénovation complète de salles de bains et équipements sanitaires</p>
               </div>
             </div>
+            
+            <div className="zone-contact">
+              <p><strong>Besoin d'une intervention ?</strong></p>
+              <p>Contactez-nous au <a href="tel:0546368283"><strong>05 46 36 82 83</strong></a> ou par email à 
+              <a href="mailto:etsrousez@gmail.com"><strong>etsrousez@gmail.com</strong></a></p>
+            </div>
           </div>
           
           <div className="communes-list animate-on-scroll">
@@ -96,11 +102,6 @@ const Zone: React.FC = () => {
               </div>
             </div>
             
-            <div className="zone-contact">
-              <p><strong>Besoin d'une intervention ?</strong></p>
-              <p>Contactez-nous au <a href="tel:0546368283"><strong>05 46 36 82 83</strong></a> ou par email à 
-              <a href="mailto:etsrousez@gmail.com"><strong>etsrousez@gmail.com</strong></a></p>
-            </div>
           </div>
         </div>
       </div>

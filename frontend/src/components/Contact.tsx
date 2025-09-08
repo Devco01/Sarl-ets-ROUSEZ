@@ -109,13 +109,34 @@ const Contact: React.FC = () => {
               <div>
                 <h4>Horaires</h4>
                 <div className="horaires-details">
-                  <p><strong>Lundi:</strong> 09h00-12h00 / 14h00-16h00</p>
-                  <p><strong>Mardi:</strong> 09h00-12h00 / 14h00-16h00</p>
-                  <p><strong>Mercredi:</strong> 09h00-12h00</p>
-                  <p><strong>Jeudi:</strong> 09h00-12h00 / 14h00-16h00</p>
-                  <p><strong>Vendredi:</strong> 09h00-12h00 / 14h00-16h00</p>
-                  <p><strong>Samedi:</strong> Fermé</p>
-                  <p><strong>Dimanche:</strong> Fermé</p>
+                  <div className="horaire-item">
+                    <span className="jour">Lundi</span>
+                    <span className="horaire">09h-12h / 14h-16h</span>
+                  </div>
+                  <div className="horaire-item">
+                    <span className="jour">Mardi</span>
+                    <span className="horaire">09h-12h / 14h-16h</span>
+                  </div>
+                  <div className="horaire-item">
+                    <span className="jour">Mercredi</span>
+                    <span className="horaire">09h-12h</span>
+                  </div>
+                  <div className="horaire-item">
+                    <span className="jour">Jeudi</span>
+                    <span className="horaire">09h-12h / 14h-16h</span>
+                  </div>
+                  <div className="horaire-item">
+                    <span className="jour">Vendredi</span>
+                    <span className="horaire">09h-12h / 14h-16h</span>
+                  </div>
+                  <div className="horaire-item fermé">
+                    <span className="jour">Samedi</span>
+                    <span className="horaire">Fermé</span>
+                  </div>
+                  <div className="horaire-item fermé">
+                    <span className="jour">Dimanche</span>
+                    <span className="horaire">Fermé</span>
+                  </div>
                 </div>
               </div>
             </div>

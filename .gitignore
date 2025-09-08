@@ -48,3 +48,6 @@ temp/
 # Service worker cache
 sw.js
 workbox-*.js
+
+# Documentation setup files
+frontend/GOOGLE_MAPS_SETUP.md

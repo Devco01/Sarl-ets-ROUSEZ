@@ -98,17 +98,53 @@
 
 .horaires-details {
     margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
 }
 
-.horaires-details p {
-    font-size: 0.85rem;
-    margin-bottom: 0.2rem;
-    color: #666;
+.horaire-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem 0.5rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid rgba(52, 152, 219, 0.1);
 }
 
-.horaires-details strong {
+.horaire-item:hover {
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+.horaire-item:last-child {
+    border-bottom: none;
+}
+
+.horaire-item.fermé {
+    opacity: 0.7;
+}
+
+.horaire-item .jour {
     color: #2c3e50;
     font-weight: 600;
+    font-size: 0.85rem;
+    min-width: 70px;
+    text-align: left;
+}
+
+.horaire-item .horaire {
+    color: #666;
+    font-size: 0.82rem;
+    text-align: right;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5px;
+}
+
+.horaire-item.fermé .horaire {
+    color: #e74c3c;
+    font-weight: 500;
+    font-style: italic;
 }
 
 /* Contact Form */
@@ -294,6 +330,15 @@
 
     .contact-item p {
         font-size: 0.9rem;
+    }
+
+    .horaire-item .jour {
+        font-size: 0.8rem;
+        min-width: 60px;
+    }
+
+    .horaire-item .horaire {
+        font-size: 0.78rem;
     }
 
     .form-group input,
