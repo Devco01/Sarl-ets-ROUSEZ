@@ -43,7 +43,7 @@ const Hero: React.FC = () => {
       setTransitionDirection('next');
       setPreviousSlide(currentSlide);
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000); // 5 secondes - rythme dynamique et agréable
+    }, 8000); // 8 secondes - rythme dynamique et agréable
 
     return () => {
       clearInterval(interval);
