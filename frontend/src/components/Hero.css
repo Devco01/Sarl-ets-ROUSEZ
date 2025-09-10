@@ -22,8 +22,44 @@
     background-repeat: no-repeat;
     transform: translateX(100%);
     opacity: 0;
-    transition: all 4s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: all 10s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: 1;
+}
+
+/* Transition automatique - Dynamique et fluide */
+.hero-slider.auto-transition .slide {
+    transition: all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* Transition manuelle - Rapide et réactive */
+.hero-slider.manual-transition .slide {
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* Direction précédente - slide vient de la gauche */
+.hero-slider.prev .slide {
+    transform: translateX(-100%); /* Nouveau slide arrive de la gauche */
+}
+
+.hero-slider.prev .slide.active {
+    transform: translateX(0);
+}
+
+.hero-slider.prev .slide.prev {
+    transform: translateX(100%); /* Ancien slide sort vers la droite */
+}
+
+/* Direction suivante - comportement normal (slide arrive de la droite) */
+.hero-slider.next .slide {
+    transform: translateX(100%); /* Nouveau slide arrive de la droite */
+}
+
+.hero-slider.next .slide.active {
+    transform: translateX(0);
+}
+
+.hero-slider.next .slide.prev {
+    transform: translateX(-100%); /* Ancien slide sort vers la gauche */
 }
 
 .slide.active {
@@ -63,7 +99,7 @@
     color: white;
     opacity: 0;
     transform: translateY(30px);
-    transition: all 2.5s cubic-bezier(0.23, 1, 0.32, 1) 0.8s;
+    transition: all 4s cubic-bezier(0.1, 0.9, 0.2, 1) 2s;
 }
 
 .slide.active .slide-content {
@@ -82,6 +118,7 @@
     backdrop-filter: blur(20px);
     border-radius: 25px;
     padding: 2.5rem 3.5rem;
+    margin-top: 2rem;
     margin-bottom: 2rem;
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
     border: 2px solid rgba(255, 255, 255, 0.8);
@@ -347,8 +384,8 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .hero {
-        padding-top: 80px;
-        min-height: calc(100vh - 80px);
+        padding-top: 60px;
+        min-height: calc(100vh - 60px);
     }
 
     .hero-title {
@@ -369,6 +406,7 @@
     .hero-logo {
         padding: 1.2rem 2rem;
         border-radius: 20px;
+        margin-top: 1.5rem;
         margin-bottom: 1.5rem;
     }
 
@@ -384,14 +422,36 @@
         max-width: 250px;
     }
     
-    /* Assurer que les transitions fonctionnent sur mobile */
+    /* Transitions plus rapides sur mobile */
     .slide {
-        transition: all 4s cubic-bezier(0.23, 1, 0.32, 1);
+        transition: all 3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
         will-change: transform, opacity;
     }
     
+    /* Transition manuelle sur mobile - plus rapide */
+    .hero-slider.manual-transition .slide {
+        transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    }
+    
+    /* Override pour desktop en mobile */
+    @media (min-width: 769px) {
+        .slide {
+            transition: all 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        }
+        
+        /* Transition automatique sur desktop - Dynamique et fluide */
+        .hero-slider.auto-transition .slide {
+            transition: all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        }
+        
+        /* Transition manuelle sur desktop - Rapide et réactive */
+        .hero-slider.manual-transition .slide {
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        }
+    }
+    
     .slide-content {
-        transition: all 2.5s cubic-bezier(0.23, 1, 0.32, 1) 0.8s;
+        transition: all 1.8s cubic-bezier(0.25, 0.8, 0.25, 1) 0.6s !important;
         will-change: opacity, transform;
     }
     
@@ -438,6 +498,7 @@
 
     .hero-logo {
         padding: 1rem 1.5rem;
+        margin-top: 1rem;
     }
     
     .hero-logo img {

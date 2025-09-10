@@ -5,6 +5,7 @@ const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isLogoModalOpen, setIsLogoModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,6 +43,34 @@ const Header: React.FC = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const openLogoModal = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Empêcher la navigation vers accueil
+    setIsLogoModalOpen(true);
+  };
+
+  const closeLogoModal = () => {
+    setIsLogoModalOpen(false);
+  };
+
+  // Fermer le modal avec la touche Échap
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeLogoModal();
+      }
+    };
+
+    if (isLogoModalOpen) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden'; // Empêcher le scroll en arrière-plan
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isLogoModalOpen]);
+
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
@@ -50,7 +79,8 @@ const Header: React.FC = () => {
             src="/assets/images/Logo.PNG" 
             alt="Ets ROUSEZ - SARL Jérémie Arrivé" 
             className="logo"
-            onClick={() => scrollToSection('home')}
+            onClick={openLogoModal}
+            title="Cliquez pour agrandir le logo"
           />
         </div>
         
@@ -106,6 +136,20 @@ const Header: React.FC = () => {
           <span className="bar"></span>
         </div>
       </div>
+      
+      {/* Modal du logo */}
+      {isLogoModalOpen && (
+        <div className="logo-modal-overlay" onClick={closeLogoModal}>
+          <div className="logo-modal-content" onClick={closeLogoModal}>
+            <div className="logo-modal-image">
+              <img 
+                src="/assets/images/Logo.PNG" 
+                alt="Ets ROUSEZ - SARL Jérémie Arrivé - Logo agrandie" 
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

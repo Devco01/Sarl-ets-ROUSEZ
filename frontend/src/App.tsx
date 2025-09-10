@@ -26,7 +26,7 @@ function App() {
       {/* Services Section */}
       <section id="services" className="services">
         <div className="container">
-          <div className="section-header">
+          <div className="section-header animate-on-scroll">
             <h2 className="section-title">Nos Services</h2>
             <p className="section-subtitle">
               Des solutions complètes pour tous vos besoins en chauffage, climatisation, plomberie et sanitaire
@@ -34,7 +34,7 @@ function App() {
           </div>
           
           <div className="services-grid">
-            <div className="service-card">
+            <div className="service-card animate-on-scroll" style={{"--animation-order": 0} as React.CSSProperties}>
               <div className="service-icon">
                 <i className="fas fa-fire-alt"></i>
               </div>
@@ -51,7 +51,7 @@ function App() {
               </ul>
             </div>
             
-            <div className="service-card">
+            <div className="service-card animate-on-scroll" style={{"--animation-order": 1} as React.CSSProperties}>
               <div className="service-icon">
                 <i className="fas fa-snowflake"></i>
               </div>
@@ -68,7 +68,7 @@ function App() {
               </ul>
             </div>
             
-            <div className="service-card">
+            <div className="service-card animate-on-scroll" style={{"--animation-order": 2} as React.CSSProperties}>
               <div className="service-icon">
                 <i className="fas fa-wrench"></i>
               </div>
@@ -85,7 +85,7 @@ function App() {
               </ul>
             </div>
             
-            <div className="service-card">
+            <div className="service-card animate-on-scroll" style={{"--animation-order": 3} as React.CSSProperties}>
               <div className="service-icon">
                 <i className="fas fa-shower"></i>
               </div>

@@ -188,7 +188,6 @@ const Contact: React.FC = () => {
                 <option value="plomberie">Plomberie</option>
                 <option value="sanitaire">Sanitaire</option>
                 <option value="depannage">Dépannage</option>
-                <option value="devis">Demande de devis</option>
                 <option value="autre">Autre</option>
               </select>
             </div>

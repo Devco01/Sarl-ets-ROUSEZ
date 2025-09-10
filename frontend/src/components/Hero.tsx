@@ -4,6 +4,8 @@ import './Hero.css';
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [previousSlide, setPreviousSlide] = useState(0);
+  const [isManualTransition, setIsManualTransition] = useState(false);
+  const [transitionDirection, setTransitionDirection] = useState('next'); // 'next' ou 'prev'
   
   const slides = [
     {
@@ -37,9 +39,11 @@ const Hero: React.FC = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
+      setIsManualTransition(false);
+      setTransitionDirection('next');
       setPreviousSlide(currentSlide);
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 15000); // 15 secondes pour laisser le temps à la transition
+    }, 5000); // 5 secondes - rythme dynamique et agréable
 
     return () => {
       clearInterval(interval);
@@ -47,16 +51,22 @@ const Hero: React.FC = () => {
   }, [currentSlide, slides.length]);
 
   const goToSlide = (index: number) => {
+    setIsManualTransition(true);
+    setTransitionDirection(index > currentSlide ? 'next' : 'prev');
     setPreviousSlide(currentSlide);
     setCurrentSlide(index);
   };
 
   const nextSlide = () => {
+    setIsManualTransition(true);
+    setTransitionDirection('next');
     setPreviousSlide(currentSlide);
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
 
   const prevSlide = () => {
+    setIsManualTransition(true);
+    setTransitionDirection('prev');
     setPreviousSlide(currentSlide);
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
@@ -64,7 +74,7 @@ const Hero: React.FC = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId.replace('#', ''));
     if (element) {
-      const headerHeight = 80; // Hauteur du header fixe
+      const headerHeight = 60; // Hauteur du header fixe (réduite)
       const elementPosition = element.offsetTop - headerHeight;
       
       window.scrollTo({
@@ -76,7 +86,7 @@ const Hero: React.FC = () => {
 
   return (
     <section id="home" className="hero">
-      <div className="hero-slider">
+      <div className={`hero-slider ${isManualTransition ? 'manual-transition' : 'auto-transition'} ${transitionDirection}`}>
         {slides.map((slide, index) => {
           let slideClass = 'slide';
           if (index === currentSlide) {
