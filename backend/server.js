@@ -3,6 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require('path');
+const { startKeepAlive } = require('./utils/keepAlive');
 require('dotenv').config();
 
 const app = express();
@@ -60,6 +61,9 @@ app.listen(PORT, () => {
     console.log(`🚀 Serveur backend démarré sur le port ${PORT}`);
     console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
     console.log(`🌐 URL: http://localhost:${PORT}`);
+    
+    // Démarrer le keep-alive en production
+    startKeepAlive();
 });
 
 module.exports = app;

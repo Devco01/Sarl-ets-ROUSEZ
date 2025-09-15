@@ -51,3 +51,4 @@ workbox-*.js
 
 # Documentation setup files
 frontend/GOOGLE_MAPS_SETUP.md
+VERCEL-DEPLOY-SIMPLE.md

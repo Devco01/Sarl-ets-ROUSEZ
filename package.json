@@ -4,7 +4,6 @@
   "description": "Site vitrine moderne pour SARL Jérémie Arrivé - Architecture Frontend/Backend",
   "private": true,
   "scripts": {
-    "install": "npm install --prefix backend && npm install --prefix frontend",
     "start": "npm run dev",
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:backend": "cd backend && npm run dev",
@@ -12,7 +11,13 @@
     "start:backend": "cd backend && npm start",
     "start:frontend": "cd frontend && npm start",
     "build:frontend": "cd frontend && npm run build",
-    "build": "npm run build:frontend"
+    "build": "npm run build:frontend",
+    "deploy:vercel": "vercel --prod",
+    "deploy:full": "npm run deploy:vercel",
+    "setup:vercel": "vercel",
+    "install:api": "npm install bcryptjs jsonwebtoken nodemailer",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install && cd ..",
+    "dev:fullstack": "cd frontend && npm start"
   },
   "keywords": [
     "plomberie",
@@ -24,6 +29,11 @@
   ],
   "author": "SARL Jérémie Arrivé",
   "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^7.0.6"
+  },
   "devDependencies": {
     "concurrently": "^7.6.0"
   },
