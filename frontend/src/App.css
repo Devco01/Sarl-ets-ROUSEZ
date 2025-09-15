@@ -30,6 +30,16 @@ body {
 /* Sections */
 section {
     padding: 80px 0;
+    position: relative;
+}
+
+/* Hiérarchie des z-index pour éviter les problèmes de superposition */
+.services {
+    z-index: 10;
+}
+
+.about {
+    z-index: 5;
 }
 
 /* Section Headers */
@@ -55,7 +65,6 @@ section {
 /* Services Section */
 .services {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    position: relative;
 }
 
 .services::before {
@@ -211,12 +220,64 @@ section {
     .services-grid .service-card.animate-on-scroll {
         transition-delay: calc(var(--animation-order, 0) * 0.05s);
     }
+    
+    /* Effet de parallax léger pour mobile */
+    .parallax-mobile {
+        will-change: transform;
+    }
+    
+    /* Effet de pression pour les éléments interactifs */
+    .mobile-pressed {
+        transform: scale(0.98);
+        transition: transform 0.1s ease-out;
+    }
+    
+    /* Animations spécifiques mobile pour les cartes */
+    .service-card.animate-on-scroll {
+        transform: translateY(30px) scale(0.95);
+        transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    .service-card.animate-on-scroll.animate-visible {
+        transform: translateY(0) scale(1);
+    }
+    
+    /* Animation rebond pour les boutons mobiles */
+    .btn {
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    .btn:active,
+    .btn.mobile-pressed {
+        transform: scale(0.95);
+    }
+    
+    /* Amélioration des animations pour la galerie mobile */
+    .gallery-item.animate-on-scroll {
+        transform: translateY(40px) rotateX(10deg);
+        transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    
+    .gallery-item.animate-on-scroll.animate-visible {
+        transform: translateY(0) rotateX(0deg);
+    }
+    
+    /* Animation pour les features de la section About */
+    .feature.animate-on-scroll {
+        transform: translateX(-30px) rotateY(5deg);
+        opacity: 0;
+        transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    
+    .feature.animate-on-scroll.animate-visible {
+        transform: translateX(0) rotateY(0deg);
+        opacity: 1;
+    }
 }
 
 /* About Section */
 .about {
     background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-    position: relative;
 }
 
 .about::before {

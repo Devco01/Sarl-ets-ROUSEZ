@@ -7,14 +7,19 @@ import Zone from './components/Zone';
 import Gallery from './components/Gallery';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import { initScrollAnimations } from './utils/animations';
+import { initScrollAnimations, initMobileScrollEffects, initMobileButtonEffects } from './utils/animations';
 
 function App() {
   useEffect(() => {
     const observer = initScrollAnimations();
+    const mobileEffectsCleanup = initMobileScrollEffects();
+    initMobileButtonEffects();
     
     return () => {
       observer.disconnect();
+      if (mobileEffectsCleanup) {
+        mobileEffectsCleanup();
+      }
     };
   }, []);
 

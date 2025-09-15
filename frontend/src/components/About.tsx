@@ -49,7 +49,7 @@ const About: React.FC = () => {
             </div>
           </div>
           
-          <div className="about-image animate-on-scroll">
+          <div className="about-image animate-on-scroll parallax-mobile" data-speed="0.1">
             <img src="/assets/images/img4.jpg" alt="Équipe Ets ROUSEZ" />
             <div className="about-stats">
               <div className="stat">

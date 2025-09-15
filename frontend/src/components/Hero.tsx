@@ -103,7 +103,7 @@ const Hero: React.FC = () => {
             >
             <div className="slide-content">
               <div className="container">
-                <div className="hero-logo animate-on-scroll">
+                <div className="hero-logo animate-on-scroll parallax-mobile" data-speed="0.1">
                   <img src="/assets/images/Logo.PNG" alt="Ets ROUSEZ - SARL Jérémie Arrivé" />
                 </div>
                 <h1 className="hero-title animate-on-scroll">

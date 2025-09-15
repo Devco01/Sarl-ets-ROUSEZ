@@ -80,6 +80,7 @@
 .about-image {
     position: relative;
     order: 2;
+    z-index: 1;
 }
 
 .about-image img {
