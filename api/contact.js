@@ -78,7 +78,50 @@ export default async function handler(req, res) {
 
             const transporter = createTransporter();
 
-            // Email de confirmation automatique au client uniquement
+            // 1. Email à l'entreprise (VOUS RECEVEZ LE MESSAGE)
+            const businessMailOptions = {
+                from: `"${nom}" <${process.env.EMAIL_USER}>`,
+                to: 'etsrousez@gmail.com', // VOTRE EMAIL
+                replyTo: email,
+                subject: `🔔 Nouveau contact: ${sujet || 'Demande de contact'}`,
+                html: `
+                    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                        <div style="background: linear-gradient(135deg, #e74c3c, #3498db); padding: 20px; text-align: center; border-radius: 10px 10px 0 0;">
+                            <h1 style="color: white; margin: 0; font-size: 24px;">🔔 NOUVEAU MESSAGE DE CONTACT</h1>
+                            <p style="color: white; margin: 10px 0 0 0; opacity: 0.9;">Site web - SARL Jérémie Arrivé</p>
+                        </div>
+                        
+                        <div style="background: white; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #e74c3c;">
+                                <h3 style="color: #2c3e50; margin-top: 0;">👤 Informations du client :</h3>
+                                <p style="margin: 10px 0; color: #555;"><strong>Nom :</strong> ${nom}</p>
+                                <p style="margin: 10px 0; color: #555;"><strong>Email :</strong> <a href="mailto:${email}" style="color: #3498db;">${email}</a></p>
+                                ${telephone ? `<p style="margin: 10px 0; color: #555;"><strong>Téléphone :</strong> <a href="tel:${telephone}" style="color: #3498db;">${telephone}</a></p>` : ''}
+                                <p style="margin: 10px 0; color: #555;"><strong>Service demandé :</strong> ${sujet || 'Non spécifié'}</p>
+                            </div>
+                            
+                            <div style="background: #fff5f5; padding: 20px; border-radius: 8px; border-left: 4px solid #e74c3c;">
+                                <h3 style="color: #2c3e50; margin-top: 0;">💬 Message :</h3>
+                                <p style="line-height: 1.6; color: #555; font-size: 16px;">${message}</p>
+                            </div>
+                            
+                            <div style="background: linear-gradient(135deg, #27ae60, #2ecc71); padding: 20px; border-radius: 8px; margin: 25px 0; text-align: center;">
+                                <h3 style="color: white; margin-top: 0;">🚀 Actions rapides :</h3>
+                                <div style="margin: 15px 0;">
+                                    <a href="mailto:${email}?subject=Re: ${sujet || 'Votre demande'}" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin: 5px; display: inline-block;">✉️ Répondre par email</a>
+                                    ${telephone ? `<a href="tel:${telephone}" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin: 5px; display: inline-block;">📞 Appeler</a>` : ''}
+                                </div>
+                            </div>
+                            
+                            <div style="text-align: center; margin-top: 30px; padding: 15px; background: #fafafa; border-radius: 8px; font-size: 14px; color: #777;">
+                                <p style="margin: 0;">📅 Reçu le ${new Date().toLocaleString('fr-FR')}</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            };
+
+            // 2. Email de confirmation automatique au client
             const clientMailOptions = {
                 from: `"SARL Jérémie Arrivé - Ets ROUSEZ" <${process.env.EMAIL_USER}>`,
                 to: email,
@@ -138,8 +181,11 @@ export default async function handler(req, res) {
                 `
             };
 
-            // Envoyer l'email de confirmation au client
-            await transporter.sendMail(clientMailOptions);
+            // Envoyer les deux emails en parallèle
+            await Promise.all([
+                transporter.sendMail(businessMailOptions), // Email pour vous
+                transporter.sendMail(clientMailOptions)     // Email de confirmation au client
+            ]);
 
             res.json({
                 success: true,

@@ -50,8 +50,8 @@ router.post('/', contactLimit, async (req, res) => {
         // Email à envoyer à l'entreprise
         const mailOptions = {
             from: `"${nom}" <${process.env.EMAIL_USER}>`,
-            to: process.env.EMAIL_USER,
-            subject: `Nouveau contact: ${sujet || 'Demande de contact'}`,
+            to: 'etsrousez@gmail.com', // Votre email fixé directement
+            subject: `🔔 Nouveau contact: ${sujet || 'Demande de contact'}`,
             replyTo: email,
             html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
