@@ -91,15 +91,7 @@ const Contact: React.FC = () => {
         </div>
         
         <div className="contact-content">
-          <div className="contact-info animate-on-scroll">
-            <div className="contact-item">
-              <div className="contact-icon">📍</div>
-              <div>
-                <h4>Adresse</h4>
-                <p>4 Zac des Bregaudieres<br />17390 La Tremblade</p>
-              </div>
-            </div>
-            
+          <div className="contact-info-top animate-on-scroll">
             <div className="contact-item">
               <div className="contact-icon">📞</div>
               <div>
@@ -240,6 +232,31 @@ const Contact: React.FC = () => {
               )}
             </button>
           </form>
+          
+          <div className="map-card animate-on-scroll">
+            <div className="map-header">
+              <h3>📍 Notre Localisation</h3>
+            </div>
+            <div className="map-container">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2782.7946308539754!2d-1.1354046845282086!3d45.76676037910673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4801532d8b3b3b3b%3A0x4b4b4b4b4b4b4b4b!2s4+Zac+des+Brégaudières%2C+17390+La+Tremblade!5e0!3m2!1sfr!2sfr!4v1234567890"
+                width="100%"
+                height="280"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Localisation Ets ROUSEZ - 4 Zac des Bregaudieres, 17390 La Tremblade"
+              />
+            </div>
+            <div className="address-info">
+              <div className="contact-icon">📍</div>
+              <div>
+                <h4>Adresse</h4>
+                <p>4 Zac des Bregaudieres<br />17390 La Tremblade</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

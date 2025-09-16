@@ -2,7 +2,7 @@
 .contact {
     background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
     position: relative;
-    padding: 80px 0;
+    padding: 80px 0; /* Padding normal */
 }
 
 .contact::before {
@@ -18,30 +18,140 @@
 
 .contact-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
     position: relative;
     z-index: 2;
+    align-items: stretch; /* Harmonise les hauteurs */
 }
 
-.contact-info {
+
+.contact-info-top {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem; /* Augmentation de l'espacement */
+    height: 100%; /* Occupe toute la hauteur */
+    justify-content: space-between; /* Répartit l'espace uniformément */
+}
+
+/* Carte directement dans la grille - suppression du conteneur intermédiaire */
+.map-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+    height: 100%; /* Occupe toute la hauteur disponible */
+    display: flex;
+    flex-direction: column;
+    margin: 0; /* Pas de marge externe */
+    padding: 0; /* Pas de padding externe */
+}
+
+.map-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.15);
+}
+
+.address-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.2rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-top: 1px solid rgba(52, 152, 219, 0.1);
+    margin-top: auto; /* Pousse vers le bas */
+    margin-bottom: 0; /* Pas de marge en bas */
+}
+
+.address-info .contact-icon {
+    width: 35px;
+    height: 35px;
+    background: #2c3e50;
+    border: 2px solid #e74c3c;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.address-info h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: #2c3e50;
+}
+
+.address-info p {
+    color: #555;
+    line-height: 1.5;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.map-header {
+    padding: 1.2rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid rgba(52, 152, 219, 0.1);
+    position: relative;
+    margin: 0; /* Suppression de toute marge */
+}
+
+.map-header h3 {
+    color: #2c3e50;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.map-container {
+    position: relative;
+    overflow: hidden;
+    flex: 1; /* Prend l'espace disponible */
+    display: flex; /* Ajout pour éliminer les espaces */
+    background: transparent; /* Pas de background */
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+    border: none;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.map-container:hover iframe {
+    transform: scale(1.01);
 }
 
 .contact-item {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
-    padding: 1.2rem;
+    padding: 1.5rem; /* Padding augmenté */
     background: rgba(255, 255, 255, 0.9);
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     transition: all 0.3s ease;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0; /* Suppression de la marge car gérée par gap */
+    flex: 1; /* Permet une répartition équilibrée */
 }
 
 .contact-item:hover {
@@ -150,11 +260,16 @@
 /* Contact Form */
 .contact-form {
     background: white;
-    padding: 2rem 2rem 1rem 2rem;
+    padding: 2.2rem 2rem 2rem 2rem; /* Padding harmonisé */
     border-radius: 12px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
+    max-width: 100%;
     transition: transform 0.3s ease;
+    height: 100%; /* Même hauteur que les autres sections */
+    justify-self: center; /* Centre le formulaire dans la grille */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Répartit l'espace uniformément */
 }
 
 .contact-form:hover {
@@ -241,6 +356,33 @@
     box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
 }
 
+/* Éliminer tout espace blanc après le bouton */
+.contact-form {
+    margin-bottom: 0 !important;
+}
+
+.contact-form .btn {
+    margin-bottom: 0 !important;
+    margin-top: auto; /* Pousse le bouton vers le bas */
+    align-self: center; /* Centre le bouton horizontalement */
+    min-width: 220px; /* Largeur optimisée pour un meilleur centrage */
+    max-width: 280px; /* Largeur maximale pour garder de bonnes proportions */
+    width: 80%; /* Largeur relative pour s'adapter au conteneur */
+}
+
+.contact-form > *:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Réduction des marges des groupes de formulaire */
+.form-group:last-of-type {
+    margin-bottom: 0.5rem !important;
+}
+
+.form-group {
+    margin-bottom: 1.6rem; /* Augmentation pour remplir la hauteur */
+}
+
 /* Loading Spinner */
 .loading-spinner {
     width: 16px;
@@ -300,22 +442,90 @@
     box-shadow: 0 8px 25px rgba(231, 76, 60, 0.6);
 }
 
+/* Styles supprimés - carte maintenant dans MapSection.tsx */
+
+/* Google Maps Integration (version complète - conservée pour compatibilité) */
+.contact-map-section {
+    padding: 2rem 0;
+    margin-top: 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.contact-map-section .google-map-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.map-title {
+    color: #2c3e50;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.map-subtitle {
+    color: #6c757d;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
 /* Mobile Responsive */
+@media (max-width: 992px) {
+    .contact-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+    
+    .map-card {
+        grid-column: 1 / -1; /* S'étend sur toutes les colonnes */
+        justify-self: center;
+        max-width: 600px;
+        margin-top: 1rem;
+    }
+}
+
 @media (max-width: 768px) {
     .contact-content {
         grid-template-columns: 1fr;
         gap: 2rem;
+        align-items: start; /* Retour à start pour mobile */
+    }
+    
+    .map-card {
+        grid-column: 1;
+        justify-self: center;
+        max-width: 100%;
+        margin-top: 1rem;
+        height: auto; /* Hauteur automatique sur mobile */
+    }
+    
+    .map-container iframe {
+        min-height: 240px; /* Hauteur légèrement augmentée */
     }
 
     .contact-form {
-        padding: 2rem 1.5rem 1rem 1.5rem;
+        padding: 1.5rem 1.5rem 1.5rem 1.5rem; /* Padding équilibré mobile */
         max-width: 100%;
         margin: 0;
+        height: auto; /* Hauteur automatique sur mobile */
+        justify-content: flex-start; /* Alignement normal sur mobile */
     }
 
     .contact-item {
-        margin-bottom: 1rem;
-        padding: 1rem;
+        margin-bottom: 0; /* Suppression de la marge */
+        padding: 1.2rem; /* Padding maintenu */
+        flex: none; /* Pas de flex sur mobile */
+    }
+    
+    .contact-info-top {
+        gap: 1.5rem; /* Gap réduit sur mobile */
+        justify-content: flex-start; /* Alignement normal sur mobile */
+        height: auto; /* Hauteur automatique sur mobile */
     }
 
     .contact-icon {
@@ -351,6 +561,27 @@
     .btn {
         padding: 12px 24px;
         font-size: 1rem;
-        min-width: 160px;
+        min-width: 180px;
+        width: 75%; /* Largeur relative optimisée pour mobile */
+        max-width: 250px;
     }
+    
+    .contact-map-section {
+        padding: 1.5rem 0;
+        margin-top: 1.5rem;
+    }
+
+    .map-title {
+        font-size: 1.5rem;
+    }
+
+    .map-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Styles supprimés - carte maintenant dans MapSection.tsx */
 }
+
+
+

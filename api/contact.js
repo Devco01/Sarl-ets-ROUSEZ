@@ -146,26 +146,33 @@ export default async function handler(req, res) {
                                 ${telephone ? `<p style="margin: 10px 0; color: #555;"><strong>Téléphone :</strong> ${telephone}</p>` : ''}
                             </div>
                             
-                            <div style="background: linear-gradient(135deg, #27ae60, #2ecc71); padding: 20px; border-radius: 8px; margin: 25px 0;">
-                                <h3 style="color: white; margin-top: 0; font-size: 18px;">🚀 Prochaines étapes :</h3>
-                                <ul style="color: white; margin: 0; padding-left: 20px;">
-                                    <li style="margin-bottom: 8px;">Nous étudions votre demande</li>
-                                    <li style="margin-bottom: 8px;">Nous vous recontactons sous 24h ouvrées</li>
-                                    <li style="margin-bottom: 8px;">Devis gratuit et sans engagement</li>
-                                </ul>
-                            </div>
-                            
                             <div style="border-top: 2px solid #ecf0f1; padding-top: 25px; margin-top: 25px;">
-                                <h3 style="color: #2c3e50; margin-top: 0;">📞 Besoin d'une réponse urgente ?</h3>
-                                <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-                                    <div style="margin: 10px 0;">
-                                        <strong style="color: #e74c3c;">📱 Téléphone :</strong><br>
-                                        <span style="color: #2c3e50; font-size: 18px;">05 46 36 82 83</span>
-                                    </div>
-                                    <div style="margin: 10px 0;">
-                                        <strong style="color: #e74c3c;">✉️ Email :</strong><br>
-                                        <span style="color: #2c3e50;">etsrousez@gmail.com</span>
-                                    </div>
+                                <h3 style="color: #2c3e50; margin-top: 0; margin-bottom: 20px; text-align: center;">📞 Besoin d'une réponse urgente ?</h3>
+                                
+                                <table style="width: 100%; margin: 0 auto; border-collapse: collapse;">
+                                    <tr>
+                                        <td style="width: 50%; padding: 15px; text-align: center; vertical-align: top;">
+                                            <div style="background: #fff5f5; padding: 20px; border-radius: 8px; border: 2px solid #e74c3c;">
+                                                <div style="color: #e74c3c; font-size: 24px; margin-bottom: 10px;">📱</div>
+                                                <strong style="color: #2c3e50; display: block; margin-bottom: 8px;">Téléphone</strong>
+                                                <a href="tel:0546368283" style="color: #e74c3c; font-size: 18px; font-weight: bold; text-decoration: none;">05 46 36 82 83</a>
+                                            </div>
+                                        </td>
+                                        <td style="width: 50%; padding: 15px; text-align: center; vertical-align: top;">
+                                            <div style="background: #f0f8ff; padding: 20px; border-radius: 8px; border: 2px solid #3498db;">
+                                                <div style="color: #3498db; font-size: 24px; margin-bottom: 10px;">✉️</div>
+                                                <strong style="color: #2c3e50; display: block; margin-bottom: 8px;">Email</strong>
+                                                <a href="mailto:etsrousez@gmail.com" style="color: #3498db; font-size: 16px; font-weight: bold; text-decoration: none;">etsrousez@gmail.com</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                
+                                <div style="text-align: center; margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                    <p style="margin: 0; color: #555; font-size: 14px;">
+                                        <strong>Nous vous recontacterons sous 24h ouvrées</strong><br>
+                                        Devis gratuit et sans engagement
+                                    </p>
                                 </div>
                             </div>
                             
