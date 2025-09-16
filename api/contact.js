@@ -78,10 +78,10 @@ export default async function handler(req, res) {
 
             const transporter = createTransporter();
 
-            // 1. Email à l'entreprise (VOUS RECEVEZ LE MESSAGE)
+            // 1. Email à l'entreprise (CLIENT REÇOIT LE MESSAGE)
             const businessMailOptions = {
                 from: `"${nom}" <${process.env.EMAIL_USER}>`,
-                to: 'etsrousez@gmail.com', // VOTRE EMAIL
+                to: 'etsrousez@gmail.com', // EMAIL DU CLIENT
                 replyTo: email,
                 subject: `🔔 Nouveau contact: ${sujet || 'Demande de contact'}`,
                 html: `
@@ -183,8 +183,8 @@ export default async function handler(req, res) {
 
             // Envoyer les deux emails en parallèle
             await Promise.all([
-                transporter.sendMail(businessMailOptions), // Email pour vous
-                transporter.sendMail(clientMailOptions)     // Email de confirmation au client
+                transporter.sendMail(businessMailOptions), // Email pour le client
+                transporter.sendMail(clientMailOptions)     // Email de confirmation au visiteur
             ]);
 
             res.json({
@@ -195,7 +195,8 @@ export default async function handler(req, res) {
         } catch (error) {
             console.error('Erreur envoi email:', error);
             res.status(500).json({
-                error: 'Erreur lors de l\'envoi du message. Veuillez réessayer plus tard.'
+                error: 'Erreur lors de l\'envoi du message. Veuillez réessayer plus tard.',
+                details: process.env.NODE_ENV === 'development' ? error.message : undefined
             });
         }
     } else if (req.method === 'GET') {

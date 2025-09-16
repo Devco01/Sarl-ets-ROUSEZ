@@ -44,7 +44,16 @@ const Gallery: React.FC = () => {
               className="gallery-item animate-on-scroll"
               onClick={() => openModal(item.src)}
             >
-              <img src={item.src} alt={item.alt} />
+              <img 
+                src={item.src} 
+                alt={item.alt}
+                loading="lazy"
+                onError={(e) => {
+                  console.warn(`Erreur de chargement de l'image: ${item.src}`);
+                  // Optionnel: remplacer par une image par défaut
+                  // e.currentTarget.src = '/assets/images/placeholder.jpg';
+                }}
+              />
               <div className="gallery-overlay">
                 <div className="overlay-content">
                   <i className="fas fa-expand-alt"></i>
@@ -63,7 +72,13 @@ const Gallery: React.FC = () => {
             <button className="modal-close" onClick={closeModal}>
               <i className="fas fa-times"></i>
             </button>
-            <img src={selectedImage} alt="Réalisation en grand" />
+            <img 
+              src={selectedImage} 
+              alt="Réalisation en grand"
+              onError={(e) => {
+                console.warn(`Erreur de chargement de l'image en modal: ${selectedImage}`);
+              }}
+            />
           </div>
         </div>
       )}

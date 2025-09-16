@@ -162,11 +162,14 @@
     object-fit: contain;
 }
 
-.hero-title {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
+/* Styles spécifiques pour le h1 du hero avec spécificité renforcée */
+.hero h1.hero-title {
+    font-size: 3.5rem !important;
+    font-weight: 700 !important;
+    margin: 0 0 1.5rem 0 !important;
+    line-height: 1.2 !important;
+    color: white;
+    text-align: center;
 }
 
 .title-line {
@@ -388,10 +391,10 @@
         min-height: calc(100vh - 60px);
     }
 
-    .hero-title {
-        font-size: 2.2rem;
-        line-height: 1.2;
-        margin-bottom: 1rem;
+    .hero h1.hero-title {
+        font-size: 2.2rem !important;
+        line-height: 1.2 !important;
+        margin: 0 0 1rem 0 !important;
     }
 
     .hero-buttons {
@@ -488,8 +491,9 @@
 }
 
 @media (max-width: 480px) {
-    .hero-title {
-        font-size: 1.8rem;
+    .hero h1.hero-title {
+        font-size: 1.8rem !important;
+        margin: 0 0 1rem 0 !important;
     }
 
     .hero-subtitle {
