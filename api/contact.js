@@ -26,7 +26,7 @@ function checkRateLimit(ip) {
 
 // Configuration du transporteur email
 const createTransporter = () => {
-    return nodemailer.createTransporter({
+    return nodemailer.createTransport({
         host: process.env.EMAIL_HOST || 'smtp.gmail.com',
         port: process.env.EMAIL_PORT || 587,
         secure: false,
@@ -193,25 +193,59 @@ export default async function handler(req, res) {
             });
 
         } catch (error) {
-            console.error('Erreur envoi email:', error);
+            console.error('Erreur envoi email détaillée:', {
+                message: error.message,
+                code: error.code,
+                command: error.command,
+                response: error.response,
+                stack: error.stack
+            });
+            
+            // Logs de debug pour les variables d'environnement
+            console.log('Variables d\'environnement disponibles:', {
+                EMAIL_HOST: process.env.EMAIL_HOST ? 'Défini' : 'MANQUANT',
+                EMAIL_PORT: process.env.EMAIL_PORT ? 'Défini' : 'MANQUANT', 
+                EMAIL_USER: process.env.EMAIL_USER ? 'Défini' : 'MANQUANT',
+                EMAIL_PASS: process.env.EMAIL_PASS ? 'Défini' : 'MANQUANT'
+            });
+            
             res.status(500).json({
                 error: 'Erreur lors de l\'envoi du message. Veuillez réessayer plus tard.',
-                details: process.env.NODE_ENV === 'development' ? error.message : undefined
+                details: error.message,
+                debugInfo: {
+                    errorCode: error.code,
+                    hasEmailConfig: !!(process.env.EMAIL_USER && process.env.EMAIL_PASS)
+                }
             });
         }
     } else if (req.method === 'GET') {
         // Test de configuration email
         try {
+            console.log('Test de configuration email...');
+            console.log('Variables d\'environnement:', {
+                EMAIL_HOST: process.env.EMAIL_HOST,
+                EMAIL_PORT: process.env.EMAIL_PORT,
+                EMAIL_USER: process.env.EMAIL_USER ? 'Défini' : 'MANQUANT',
+                EMAIL_PASS: process.env.EMAIL_PASS ? 'Défini' : 'MANQUANT'
+            });
+            
             const transporter = createTransporter();
             await transporter.verify();
             res.json({ 
                 success: true, 
-                message: 'Configuration email fonctionnelle' 
+                message: 'Configuration email fonctionnelle',
+                config: {
+                    host: process.env.EMAIL_HOST || 'smtp.gmail.com',
+                    port: process.env.EMAIL_PORT || 587,
+                    hasAuth: !!(process.env.EMAIL_USER && process.env.EMAIL_PASS)
+                }
             });
         } catch (error) {
+            console.error('Erreur test configuration email:', error);
             res.status(500).json({ 
                 error: 'Erreur de configuration email',
-                details: error.message 
+                details: error.message,
+                code: error.code
             });
         }
     } else {

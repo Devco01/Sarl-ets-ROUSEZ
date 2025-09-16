@@ -55,10 +55,26 @@ const Contact: React.FC = () => {
         sujet: '',
         message: ''
       });
-    } catch (error) {
+    } catch (error: any) {
       setSubmitType('error');
-      setSubmitMessage('Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer.');
-      console.error('Erreur envoi formulaire:', error);
+      
+      // Affichage d'un message d'erreur plus détaillé
+      let errorMessage = 'Une erreur est survenue lors de l\'envoi du message.';
+      
+      if (error.response?.data?.details) {
+        errorMessage += ` Détail: ${error.response.data.details}`;
+      }
+      
+      if (error.response?.data?.debugInfo?.hasEmailConfig === false) {
+        errorMessage += ' (Configuration email manquante)';
+      }
+      
+      setSubmitMessage(errorMessage);
+      console.error('Erreur envoi formulaire:', {
+        error: error,
+        response: error.response?.data,
+        status: error.response?.status
+      });
     } finally {
       setIsSubmitting(false);
     }
