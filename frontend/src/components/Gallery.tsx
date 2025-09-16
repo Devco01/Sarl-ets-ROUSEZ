@@ -17,8 +17,8 @@ const Gallery: React.FC = () => {
     { src: '/assets/images/img14.jpg', alt: 'Aménagement sanitaire', category: 'sanitaire' },
     { src: '/assets/images/img15.jpg', alt: 'Climatisation bureau', category: 'climatisation' },
     { src: '/assets/images/img16.JPG', alt: 'Système chauffage moderne', category: 'chauffage' },
-    // img9 en dernier avec gestion d'erreur renforcée
-    { src: '/assets/images/img9.JPG?v=2', alt: 'Système de chauffage', category: 'chauffage' }
+    // img9 avec version nettoyée (corruption corrigée)
+    { src: '/assets/images/img9_clean.jpg', alt: 'Système de chauffage', category: 'chauffage' }
   ];
 
   const openModal = (imageSrc: string) => {
@@ -49,22 +49,10 @@ const Gallery: React.FC = () => {
               <img 
                 src={item.src} 
                 alt={item.alt}
-                loading={item.src.includes('img9.JPG') ? 'eager' : 'lazy'}
+                loading="lazy"
                 decoding="async"
                 onError={(e) => {
                   console.warn(`Erreur de chargement de l'image: ${item.src}`);
-                  
-                  // Gestion spéciale pour img9.JPG
-                  if (item.src.includes('img9.JPG')) {
-                    console.log('Tentative de rechargement img9.JPG sans cache...');
-                    const timestamp = new Date().getTime();
-                    e.currentTarget.src = `/assets/images/img9.JPG?t=${timestamp}`;
-                  }
-                }}
-                onLoad={() => {
-                  if (item.src.includes('img9.JPG')) {
-                    console.log('img9.JPG chargée avec succès');
-                  }
                 }}
               />
               <div className="gallery-overlay">
